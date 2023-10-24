@@ -1,4 +1,5 @@
 import StudentInfo from "app/StudentInfo.js";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -10,7 +11,11 @@ export default function Page() {
       </div>
       <div className="w-1/2">
         <StudentInfo />
+        <Link href="/" className="m-4">
+        🔙 Home
+      </Link>
       </div>
+
     </main>
   )
 }

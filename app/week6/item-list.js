@@ -32,15 +32,15 @@ function renderSortButtons(setSortBy) {
   );
 }
 
-export default function ItemList() {
+export default function ItemList({ items }) {
   const [sortBy, setSortBy] = useState("name");
 
   // map the item
-  let items = itemsData.map((item) => ({
-    key: item.id,
-    name: item.name,
-    quantity: item.quantity,
-    category: item.category,
+  const itemList = items.map((item) => ({
+      key: item.id,
+      name: item.name,
+      quantity: item.quantity,
+      category: item.category
   }));
 
   // sort the items by name or by category
@@ -67,9 +67,7 @@ export default function ItemList() {
         {renderSortButtons(setSortBy)}
         {Object.keys(groupedItemsByCategory).map((category) => (
           <div key={category}>
-            <h2 className="capitalize font-medium font-sans text-xl pl-1 m-4 mt-8 border border-rose-400 bg-fuchsia-100 max-w-sm">
-              {category}
-            </h2>
+            <h2 className="capitalize font-medium font-sans text-xl pl-1 m-4 mt-8 border border-rose-400 bg-fuchsia-100 max-w-md">{category}</h2>
             {groupedItemsByCategory[category].map((item) => (
               <Item
                 key={item.key}
@@ -87,14 +85,15 @@ export default function ItemList() {
   return (
     <>
       {renderSortButtons(setSortBy)}
-      {items.map((item) => (
-        <Item
-          key={item.key}
-          name={item.name}
-          quantity={item.quantity}
-          category={item.category}
-        />
-      ))}
+      {items.map((item, index) => (
+  <Item
+    key={item.id} // Use a unique identifier, like the item's ID
+    name={item.name}
+    quantity={item.quantity}
+    category={item.category}
+  />
+))}
+
     </>
   );
 }
