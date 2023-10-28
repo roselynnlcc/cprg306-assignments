@@ -11,11 +11,10 @@ export default function Page() {
       </div>
       <div className="w-1/2">
         <StudentInfo />
-        <Link href="/" className="m-4">
+      </div>
+      <Link href="/" className="m-4">
         🔙 Home
       </Link>
-      </div>
-
     </main>
   )
 }
