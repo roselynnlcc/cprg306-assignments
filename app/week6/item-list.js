@@ -1,6 +1,5 @@
 "use client";
 import Item from "./item.js";
-import itemsData from "./items.json";
 import { useState } from "react";
 
 function renderSortButtons(setSortBy) {

@@ -23,7 +23,7 @@ function renderSortButtons(setSortBy) {
       <button
         id="grouped category"
         onClick={(e) => setSortBy(e.target.id)}
-        className="bg-emerald-400 m-2 p-2 w-28 rounded-lg"
+        className="bg-emerald-400 m-2 p-2 w-40 rounded-lg"
       >
         Grouped Category
       </button>
@@ -68,7 +68,7 @@ export default function ItemList({ items, onItemSelect }) {
         {renderSortButtons(setSortBy)}
         {Object.keys(groupedItemsByCategory).map((category) => (
           <div key={category}>
-            <h2 className="capitalize font-medium font-sans text-xl pl-1 m-4 mt-8 border border-rose-400 bg-fuchsia-100 max-w-md">{category}</h2>
+            <h2 className="capitalize font-medium font-sans text-xl pl-1 m-4 mt-8 border border-rose-400 bg-fuchsia-100 max-w-lg">{category}</h2>
             {groupedItemsByCategory[category].map((item) => (
               <Item
                 key={item.id}
