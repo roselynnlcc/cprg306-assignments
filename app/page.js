@@ -19,7 +19,8 @@ export default function Page() {
       <p><Link href="/week5" className="hover:text-lime-600 hover:font-bold">Week5</Link></p>
       <p><Link href="/week6" className="hover:text-teal-500 hover:font-bold">Week6</Link></p>
       <p><Link href="/week7" className="hover:text-blue-500 hover:font-bold">Week7</Link></p>
-      <p><Link href="/week8" className="hover:text-violet-500 hover:font-bold">Week8</Link></p>
+      <p><Link href="/week8" className="hover:text-indigo-500 hover:font-bold">Week8</Link></p>
+      <p><Link href="/week10" className="hover:text-violet-500 hover:font-bold">week10</Link></p>
       </div>
     </main>
   )
