@@ -6,6 +6,7 @@ import ItemList from "./item-list";
 import NewItem from "./new-item";
 import MealIdeas from "./meal-ideas";
 import Link from "next/link";
+import Home from "./shopping-list/page";
 import getItems from "../_services/shopping-list-service";
 import addItem from "../_services/shopping-list-service";
 
