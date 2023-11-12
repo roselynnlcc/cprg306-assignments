@@ -5,7 +5,7 @@ import { useState } from "react";
 function renderSortButtons(setSortBy) {
   return (
     <div className="flex items-center m-2">
-      <label className="ml-4 font-medium">Sort by: </label>
+      <p className="ml-4 font-medium">Sort by: </p>
       <button
         id="name"
         onClick={(e) => setSortBy(e.target.id)}
@@ -31,18 +31,8 @@ function renderSortButtons(setSortBy) {
   );
 }
 
-export default function ItemList({ items, onItemSelect }) {
+export default function ItemList({ items = [], onItemSelect, onDeleteItem }) {
   const [sortBy, setSortBy] = useState("name");
-
-
-
-  // map the item
-  const itemList = items.map((item) => ({
-      key: item.id,
-      name: item.name,
-      quantity: item.quantity,
-      category: item.category
-  }));
 
   // sort the items by name or by category
   if (sortBy === "name") {
@@ -68,7 +58,9 @@ export default function ItemList({ items, onItemSelect }) {
         {renderSortButtons(setSortBy)}
         {Object.keys(groupedItemsByCategory).map((category) => (
           <div key={category}>
-            <h2 className="capitalize font-medium font-sans text-xl pl-1 m-4 mt-8 border border-rose-400 bg-fuchsia-100 max-w-lg">{category}</h2>
+            <h2 className="capitalize font-medium font-sans text-xl pl-1 m-4 mt-8 border border-rose-400 bg-fuchsia-100 max-w-lg">
+              {category}
+            </h2>
             {groupedItemsByCategory[category].map((item) => (
               <Item
                 key={item.id}
@@ -76,6 +68,7 @@ export default function ItemList({ items, onItemSelect }) {
                 quantity={item.quantity}
                 category={item.category}
                 onSelect={() => onItemSelect(item)}
+                onDelete={() => onDeleteItem(item.id)}
               />
             ))}
           </div>
@@ -88,15 +81,15 @@ export default function ItemList({ items, onItemSelect }) {
     <>
       {renderSortButtons(setSortBy)}
       {items.map((item, index) => (
-  <Item
-    key={item.id}
-    name={item.name}
-    quantity={item.quantity}
-    category={item.category}
-    onSelect={() => onItemSelect(item)}
-  />
-))}
-
+        <Item
+          key={item.id}
+          name={item.name}
+          quantity={item.quantity}
+          category={item.category}
+          onSelect={() => onItemSelect(item)}
+          onDelete={() => onDeleteItem(item.id)}
+        />
+      ))}
     </>
   );
 }

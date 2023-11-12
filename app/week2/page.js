@@ -7,7 +7,7 @@ export default function Page() {
         {/* Add flex, min-h-screen to stretch contents to height of viewpoint 
             and p24 as padding*/}
       <div className="w-2/6">
-        <h1 class="text-2xl">My Shopping List</h1>
+        <h1 className="text-2xl">My Shopping List</h1>
       </div>
       <div className="w-1/2">
         <StudentInfo />

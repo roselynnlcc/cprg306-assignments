@@ -7,7 +7,7 @@ export default function NewItem({ onAddItem }) {
   const [quantity, setQuantity] = useState(1);
   const [category, setCategory] = useState("Produce");
   const [itemCreated, setItemCreated] = useState(false);
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     alert(
@@ -30,9 +30,9 @@ export default function NewItem({ onAddItem }) {
     setItemCreated(true);
 
     // reset the form
-      setName("");
-      setQuantity(1);
-      setCategory("Produce");
+    setName("");
+    setQuantity(1);
+    setCategory("Produce");
   };
 
   const handleNameChange = (event) => {
@@ -57,6 +57,7 @@ export default function NewItem({ onAddItem }) {
           <form onSubmit={handleSubmit}>
             <input
               type="text"
+              id="itemName"
               placeholder="Item name"
               required
               onChange={handleNameChange}
@@ -67,6 +68,7 @@ export default function NewItem({ onAddItem }) {
             <div className="flex flex-row justify-between mb-4">
               <input
                 type="number"
+                id="quantity"
                 min="1"
                 max="100"
                 required
@@ -76,8 +78,11 @@ export default function NewItem({ onAddItem }) {
               />
 
               <select
+                id="category"
                 className="ml-1 border-2 border-emerald-100  bg-cyan-50  focus:bg-emerald-100 p-2 rounded-lg"
-                onChange={handleCategoryChange} required value={category}
+                onChange={handleCategoryChange}
+                required
+                value={category}
               >
                 <option value disabled>
                   Category

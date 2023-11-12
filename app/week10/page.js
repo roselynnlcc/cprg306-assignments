@@ -15,7 +15,7 @@ export default function Page() {
     <div className="bg-green-50 min-h-screen">
       {user && (
         <div>
-          <Home/>
+          <Home />
         </div>
       )}
 

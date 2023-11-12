@@ -6,8 +6,11 @@ import ItemList from "./item-list";
 import NewItem from "./new-item";
 import MealIdeas from "./meal-ideas";
 import Link from "next/link";
-import getItems from "../_services/shopping-list-service";
-import addItem from "../_services/shopping-list-service";
+import {
+  getItems,
+  addItem,
+  deleteItem,
+} from "../_services/shopping-list-service.js";
 
 export default function Home() {
   const [items, setItems] = useState([]);
@@ -15,16 +18,28 @@ export default function Home() {
   const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
   const handleAddItem = async (newItem) => {
-    try{
-      if (user){
-        const newItemId = await addItem(user.id, newItem);
+    try {
+      if (user) {
+        const newItemId = await addItem(user.uid, newItem);
         newItem.id = newItemId;
         setItems([...items, newItem]);
       }
-    } catch (error){
+    } catch (error) {
       console.error("Error adding item: ", error);
     }
-  }
+  };
+
+  const handleDeleteItem = async (itemId) => {
+    try {
+      if (user) {
+        await deleteItem(user.uid, itemId);
+        const updatedItems = items.filter((item) => item.id !== itemId);
+        setItems(updatedItems);
+      }
+    } catch (error) {
+      console.error("Error deleting item: ", error);
+    }
+  };
 
   const handleSignOut = async () => {
     await firebaseSignOut();
@@ -47,7 +62,7 @@ export default function Home() {
   const loadItems = async () => {
     try {
       if (user) {
-        const shoppingListItems = await getItems(user.id);
+        const shoppingListItems = await getItems(user.uid);
         setItems(shoppingListItems);
       }
     } catch (error) {
@@ -78,7 +93,11 @@ export default function Home() {
           <div className="flex ml-4">
             <div className="w-1/2">
               <NewItem onAddItem={(newItem) => handleAddItem(newItem)} />
-              <ItemList items={items} onItemSelect={handleItemSelect} />
+              <ItemList
+                items={items}
+                onItemSelect={handleItemSelect}
+                onDeleteItem={handleDeleteItem}
+              />
             </div>
             <div className="w-1/2 h-max bg-white-50 max-w-md bg-white p-8 rounded-lg shadow-md mb-2">
               <h1 className="text-2xl text-gray-800 font-bold mb-4">

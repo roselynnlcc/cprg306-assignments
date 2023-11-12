@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <main class="p-12 font-mono bg-violet-50 min-h-screen">
+    <main className="p-12 font-mono bg-violet-50 min-h-screen">
       {/* Add flex, min-h-screen to stretch contents to height of viewpoint 
       and p12 as padding*/}
       <div className>
