@@ -4,7 +4,7 @@ import { collection, getDocs, addDoc, query } from "firebase/firestore";
 // Fetch all items
 export const getItems = async (userId) => {
   try {
-    const userItemsCollectionRef = collection(db, `users/${userId}/items`);
+    const userItemsCollectionRef = collection(db, "users", userId, "items");
     const itemsSnapshot = await getDocs(userItemsCollectionRef);
     const mappedItems = itemsSnapshot.docs.map((itemDoc) => ({
       id: itemDoc.id,
@@ -19,7 +19,7 @@ export const getItems = async (userId) => {
 
 export const addItem = async (userId, item) => {
   try {
-    const userItemsCollectionRef = collection(db, `users/${userId}/items`);
+    const userItemsCollectionRef = collection(db, "users", userId, item);
     const docRef = await addDoc(userItemsCollectionRef, item);
     return docRef.id;
   } catch (error) {
